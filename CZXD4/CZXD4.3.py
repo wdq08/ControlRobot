@@ -21,7 +21,8 @@ t.pack()
 
 def send():
     var = e.get()
-    url = "https://oapi.dingtalk.com/robot/send?access_token=fd70752caa12ac7be000218d355c2baa8d90ed79a0e2dbe2a5a87ab3ccf540ff"
+    url = "https://oapi.dingtalk.com/robot/send?access_token=fd70752caa12ac7be000218d355c2baa8d90ed79a0e2dbe2a5a87ab3ccf\
+    540ff"
     text = (var + ".")
     if len(text) < 2:
         return 0
