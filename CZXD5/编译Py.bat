@@ -1,0 +1,1 @@
+pyinstaller -F CZXD5.3.py -w -i=icon.ico

@@ -10,11 +10,13 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 import sys
+import requests
+import json
 
 
 class Ui_Form(object):
     def setupUi(self, Form):
-        Form.setObjectName("Form")
+        Form.setObjectName("控制小钉5.3")
         Form.resize(640, 480)
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(0, 0, 641, 481))
@@ -45,6 +47,7 @@ class Ui_Form(object):
         self.label_3.setObjectName("label_3")
 
         self.retranslateUi(Form)
+        self.pushButton.clicked.connect(lambda: send(self.lineEdit.text()))  # type: ignore
         self.pushButton.pressed.connect(self.lineEdit.clear)  # type: ignore
         self.pushButton.released.connect(self.lineEdit.selectAll)  # type: ignore
         self.lineEdit.editingFinished.connect(self.pushButton.click)  # type: ignore
@@ -52,11 +55,24 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.label_2.setText(_translate("Form", "控制小钉5.2"))
-        self.lineEdit.setText(_translate("Form", "请在这里输入要发送的文字"))
+        Form.setWindowTitle(_translate("Form", "控制小钉5.3"))
+        self.label_2.setText(_translate("Form", "控制小钉5.3"))
+        self.lineEdit.setPlaceholderText(_translate("Form", "请在这里输入要发送的文字"))
         self.pushButton.setText(_translate("Form", "发送"))
         self.label_3.setText(_translate("Form", "By Wdq"))
+
+def send(self):
+    url = "https://oapi.dingtalk.com/robot/send?access_token=fd70752caa12ac7be000218d355c2baa8d90ed79a0e2dbe2a5a87ab3ccf540ff"
+    text = (self + ".")
+    if len(text) < 2:
+        return 0
+    program = {
+        "isAtAll": "true",
+        "msgtype": "text",
+        "text": {"content": text},
+    }
+    headers = {'Content-Type': 'application/json'}
+    f = requests.post(url, data=json.dumps(program), headers=headers)
 
 
 if __name__ == "__main__":

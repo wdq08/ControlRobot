@@ -1,0 +1,1 @@
+pyuic5 -o "D:\Python Learning\CZXD5\CZXD5.0.py" "D:\Python Learning\CZXD5\CZXD5.0.ui"
