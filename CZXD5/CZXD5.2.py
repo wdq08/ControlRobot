@@ -21,7 +21,7 @@ class Ui_Form(object):
         self.label = QtWidgets.QLabel(Form)
         self.label.setGeometry(QtCore.QRect(0, 0, 641, 481))
         self.label.setText("")
-        self.label.setPixmap(QtGui.QPixmap("D:\\Python Learning\\CZXD\\CZXD5\\bkgd.jpeg"))
+        self.label.setPixmap(QtGui.QPixmap("bkgd.jpeg"))
         self.label.setObjectName("label")
         self.label_2 = QtWidgets.QLabel(Form)
         self.label_2.setGeometry(QtCore.QRect(250, 70, 201, 41))
@@ -48,9 +48,9 @@ class Ui_Form(object):
 
         self.retranslateUi(Form)
         self.pushButton.clicked.connect(lambda: send(self.lineEdit.text()))  # type: ignore
-        self.pushButton.pressed.connect(self.lineEdit.clear)  # type: ignore
         self.pushButton.released.connect(self.lineEdit.selectAll)  # type: ignore
         self.lineEdit.editingFinished.connect(self.pushButton.click)  # type: ignore
+        self.pushButton.pressed.connect(self.lineEdit.clear)  # type: ignore
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def retranslateUi(self, Form):
@@ -61,9 +61,9 @@ class Ui_Form(object):
         self.pushButton.setText(_translate("Form", "发送"))
         self.label_3.setText(_translate("Form", "By Wdq"))
 
-def send(self):
+def send(var):
     url = "https://oapi.dingtalk.com/robot/send?access_token=fd70752caa12ac7be000218d355c2baa8d90ed79a0e2dbe2a5a87ab3ccf540ff"
-    text = (self + ".")
+    text = (var + ".")
     if len(text) < 2:
         return 0
     program = {
